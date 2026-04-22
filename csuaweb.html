@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Cagayan State University Library and E-Resources Portal" />
+  <title>CSU Library — E-Resources</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --red:#9a1212;
+      --blue:#0038a8;
+      --background-color:white;
+      --radius:16px;
+      --max-width:1100px;
+      --text-dark:#1a1a1a;
+      --text-muted:#555;
+      font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    }
+
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html, body { height:100%; scroll-behavior:smooth; background:var(--light-bg); color:var(--text-dark); }
+
+    body {
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    header {
+      background:#fff;
+      position:sticky; top:0; z-index:10;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      background-color: rgba(255, 255, 255, 0.726);
+      backdrop-filter: blur(8px);
+    }
+
+    nav {
+      max-width:var(--max-width);
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:1rem 1.5rem;
+    }
+
+    .logo {
+      display:flex;
+      align-items:center;
+      gap:0.5rem;
+      font-weight:700;
+      font-size:1.3rem;
+      color:var(--red);
+    }
+
+    .logo img { 
+      width:60px; 
+      height:60px; 
+      object-fit:contain; 
+      transition: transform 0.4s ease;
+      transform-origin: center;
+    }
+    ul.nav-links {
+      display:flex;
+      gap:1.5rem;
+      list-style:none;
+    }
+
+    .logo img:hover {
+  transform: rotate(10deg);
+}
+
+    .nav-links a {
+      text-decoration:none;
+      color:var(--text-dark);
+      font-weight:500;
+      transition:color 0.3s;
+    }
+
+    .nav-links a:hover { color:var(--blue); }
+
+    /* Hero Section */
+    .hero {
+      background:#fff;
+      padding:4rem 1.5rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      max-width:var(--max-width);
+      margin:2rem auto;
+      border-radius:var(--radius);
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .hero::before, .hero::after {
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      opacity:0.2;
+    }
+
+    .hero::before {
+      width:300px; height:300px;
+      background:var(--red);
+      top:-80px; left:-80px;
+    }
+
+    .hero::after {
+      width:250px; height:250px;
+      background:var(--blue);
+      bottom:-80px; right:-80px;
+    }
+
+    .hero-text {
+      flex:1;
+      min-width:280px;
+      z-index:1;
+    }
+
+    .hero-text h1 {
+      font-size:2.3rem;
+      color:var(--text-dark);
+    }
+
+    .hero-text p {
+      margin-top:1rem;
+      color:var(--text-muted);
+      font-size:1.1rem;
+    }
+
+    .hero-text a {
+      display:inline-block;
+      margin-top:1.5rem;
+      background:var(--red);
+      color:#fff;
+      padding:0.8rem 1.5rem;
+      border-radius:var(--radius);
+      text-decoration:none;
+      transition:background 0.3s;
+    }
+
+    .hero-text a:hover { background:var(--blue); }
+
+    .hero-image {
+      flex:0.1;
+      min-width:260px;
+      text-align:center;
+      z-index: 1;
+    }
+
+    .hero-image img {
+      width:90%;
+      max-width:400px;
+      border-radius:var(--radius);
+      box-shadow:0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    section {
+      max-width:var(--max-width);
+      margin:4rem auto;
+      padding:0 1.5rem;
+    }
+
+    h2.section-title {
+      text-align:center;
+      font-size:1.8rem;
+      color:var(--text-dark);
+      margin-bottom:1rem;
+    }
+
+    p.section-desc {
+      text-align:center;
+      color:var(--text-muted);
+      margin-bottom:2rem;
+    }
+
+    /* Features */
+    .features {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:1.5rem;
+    }
+
+    .feature {
+      background:#fff;
+      border-radius:var(--radius);
+      padding:1.5rem;
+      text-align:center;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      transition:transform 0.3s;
+      
+    }
+
+    .feature:hover { transform:translateY(-6px); }
+    .feature h3 { color:var(--red); margin-bottom:0.5rem; }
+
+    /* E-Resources */
+    .resources-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:1.5rem;
+    }
+  
+    .resource {
+      background:#fff;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      transition:transform 0.3s, box-shadow 0.3s;
+    }
+
+    .resource:hover {
+      transform:translateY(-6px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .resource img {
+      width:100%; height:160px; object-fit:cover;
+    }
+
+    .resource h4 {
+      padding:1rem 1rem 0.5rem;
+      color:var(--blue);
+      text-decoration: none;
+    }
+    .resource h4 a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .resource p {
+      padding:0 1rem 1rem;
+      color:var(--text-muted);
+      font-size:0.95rem;
+      text-decoration: none;
+    }
+
+    /* NLP Section */
+    .nlp-section {
+      background:#fff;
+      border-radius:var(--radius);
+      padding:3rem 1.5rem;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .nlp-section::before {
+      content:"";
+      position:absolute;
+      width:350px;
+      height:350px;
+      border-radius:50%;
+      background:var(--blue);
+      opacity:0.15;
+      top:-100px; right:-100px;
+    }
+
+    .nlp-header {
+      text-align:center;
+      position:relative;
+      z-index:1;
+    }
+
+    .nlp-header img {
+      width:200px;
+      margin-bottom:1rem;
+    }
+
+    .nlp-header h2 {
+      font-size:2rem;
+      color:var(--red);
+      margin-bottom:0.5rem;
+    }
+
+    .nlp-header p {
+      color:var(--text-muted);
+      max-width:700px;
+      margin:0 auto 2rem;
+    }
+
+    .nlp-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:1.5rem;
+      position:relative;
+      z-index:1;
+    }
+
+    .nlp-item {
+      background:var(--light-bg);
+      border-radius:var(--radius);
+      padding:1.5rem;
+      text-align:center;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      transition:transform 0.3s;
+      text-align: left;
+    }
+
+    .nlp-item h4 a {
+      color: rgb(145, 29, 29);
+    }
+
+    /*.nlp-item img {
+      width:100%; height:160px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:10rem;
+
+      background:#fff;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      transition:transform 0.3s, box-shadow 0.3s;
+    }*/
+
+    
+
+    .nlp-item:hover { transform:translateY(-6px); }
+    .nlp-item h4 { color:var(--blue); margin-bottom:0.5rem; }
+
+    /* Testimonials */
+    .testimonials {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:1.5rem;
+    }
+
+    .testimonial {
+      background:#fff;
+      border-radius:var(--radius);
+      padding:1.5rem;
+      box-shadow:0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .testimonial p {
+      font-style:italic;
+      color:var(--text-muted);
+      margin-bottom:1rem;
+    }
+
+    .testimonial .name {
+      font-weight:600;
+      color:var(--text-dark);
+    }
+
+    footer {
+      background:var(--red);
+      color:#fff;
+      text-align:center;
+      padding:2rem 1rem;
+      margin-top:4rem;
+    }
+
+    footer p { margin:0.3rem 0; }
+    footer a { color:#fff; text-decoration:underline; }
+
+    @media(max-width:700px){
+      .hero { flex-direction:column; text-align:center; }
+      .hero-text h1 { font-size:1.8rem; }
+      .hero-image img { width:80%; }
+    }
+
+      #backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+    background: var(--red);
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    transition: background 0.3s, transform 0.3s;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05) ;
+  }
+
+  #backToTop:hover {
+    background: var(--blue);
+    transform: scale(1.1);
+  }
+
+  #backToTop svg {
+    pointer-events:none ;
+  }
+
+  @media (max-width: 768px) {
+
+  ul.nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+    text-align: center;
+    display: none; /* hide menu on mobile */
+  }
+
+  ul.nav-links.show {
+    display: flex; /* show when toggled */
+  }
+
+}
+
+  @media (max-width: 768px) {
+  #backToTop {
+    bottom: 20px;
+    right: 20px;
+    padding: 16px; /* better touch size */
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo"><a href="csuaweb.html"><img src="CSU.png" alt="CSU Logo"></a>CAGAYAN STATE UNIVERSITY LIBRARY</div>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+      <ul class="nav-links">
+        <li><a href="https://www.facebook.com/universitylibrarycsu" target="_blank">Home</a></li>
+        <li><a href="#why">About</a></li>
+        <li><a href="#resources">E-Resources</a></li>
+        <li><a href="#cplrc">CPLRC</a></li>
+        <li><a href="#nlp">NLP</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>Welcome to the Cagayan State University Library</h1>
+      <p>Your gateway to knowledge and digital academic excellence. Access our e-resources, journals, and learning materials anytime, anywhere.</p>
+      <a href="#resources">Explore E-Resources</a>
+    </div>
+    <div class="hero-image">
+      <img src="Lib logo.jpg" alt="CSU Library">
+    </div>
+  </section>
+
+  <section id="why">
+    <h2 class="section-title">Why Choose CSU Library?</h2>
+    <p class="section-desc">Empowering CSU students with world-class digital learning tools and research databases.</p>
+    <div class="features">
+      <div class="feature">
+        <h3>📚 Vast Resources</h3>
+        <p>Access thousands of e-books, academic journals, and research materials from trusted databases.</p>
+      </div>
+      <div class="feature">
+        <h3>💻 Digital Access</h3>
+        <p>Seamlessly browse materials from campus or home through our cloud-based library portal.</p>
+      </div>
+      <div class="feature">
+        <h3>🎓 Student Support</h3>
+        <p>Guidance, tutorials, and responsive librarians ready to assist your research needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources">
+    <h2 class="section-title">E-Resources Portal</h2>
+    <p class="section-desc">Explore a variety of academic databases and digital collections available to CSU students and faculty.</p>
+
+    <div class="resources-grid">
+      <div class="resource">
+        <a href="https://www.bibliotex.com/home" target="_blank"><img src="Bib.jpg" alt="Bibliotex"></a> 
+        <h4><a href="https://www.bibliotex.com/home"target="_blank">BIBLIOTEX</a></h4>
+        <p>A digital library providing access to academic and educational eBooks and resources.
+          <br><br> <b> Username 1: </b> cplrc <br> <b> Password 1: </b> Cplrc@2024</p>
+        <p> <b>Username2: </b> csuac2023 <br> <b> Password2: </b> Csuac@2023 </p>
+        <p> <b>Username3: </b> csugc <br> <b>Password3: </b>  Csugc@2023</p>
+      </div>
+
+      <div class="resource">
+        <a href="https://www.megatextsphils.store/landingpages/obnc/?fbclid=IwY2xjawP7V7BleHRuA2FlbQIxMABicmlkETFsUVlmU1NTZUNLM0IzMTVtc3J0Y
+        wZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHsm7PCFLPmcVo_7thJj6zpF9TNz-ODgVw8VjnHI1JTayo-
+        b4Nc7VBMSaWWKy_aem_Gj1PpOekpztDRrAJ_LDl4w" target="_blank"><img src="wiley-logo.png" alt="Wiley"></a>
+        <h4> <a href="https://www.megatextsphils.store/landingpages/obnc/?fbclid=IwY2xjawP7V7BleHRuA2FlbQIxMABicmlkETFsUVlmU1NTZUNLM0IzMTVtc3J0Y
+        wZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHsm7PCFLPmcVo_7thJj6zpF9TNz-ODgVw8VjnHI1JTayo-
+        b4Nc7VBMSaWWKy_aem_Gj1PpOekpztDRrAJ_LDl4w" target="_blank">E-BOOKS</a></h4>
+        <p>Offers scholarly eBooks and journals covering science, technology, medicine, and business fields.</p>
+        <p> <b> Username: </b> Cagayan <br> <b>Password: </b> Wiley12345! </p>
+      </div>
+      
+
+      <div class="resource">
+        <a href="https://ebooks.wtbooks.net/" target="_blank"><img src="WT.png" alt="World Technologies"></a>
+        <h4><a href="https://ebooks.wtbooks.net/" target="_blank">WORLD TECHNOLOGIES</a></h4>
+        <p>Provides access to educational databases, eBooks, and research tools for libraries and schools.</p>
+        <p> <b>ID: </b> csuac23@wtebooks.net <br> <b>Password: </b> Wtebooks23@csuac </p>
+      </div>
+
+      <div class="resource">
+        <a href="https://gejl.jgatenext.com" target="_blank"><img src="J-Gate_Logo.png" alt="J-Gate"></a>
+        <h4><a href="https://gejl.jgatenext.com" target="_blank">J-GATE ONLINE JOURNALS </a></h4>
+        <p>A comprehensive database of academic journal articles across multiple disciplines</p>
+        <p> <b>Username: </b> csuuser <br> <b>Password: </b> Jgate3@2024 </p>
+      </div>
+
+      <div class="resource">
+        <a href="https://www.perlego.com" target="_blank"><img src="Per.jpg" alt="Perlego"></a>
+        <h4><a href="https://www.perlego.com" target="_blank">PERLEGO</a></h4>
+        <p>Perlego is an online academic database offering unlimited access to scholarly 
+          e-books with tools for reading, notes, and citations.</p>
+        <p> <b>Username: </b> csulibrary@csu.edu.ph <br> <b>Password: </b> csuandrews@2025 </p>
+
+      </div>
+
+      <div class="resource">
+        <a href="https://app.jove.com/" target="_blank"><img src="Jove.png" alt="JOVE"></a>
+        <h4><a href="https://app.jove.com/" target="_blank">JOVE</a></h4>
+        <p> JoVE is a peer-reviewed video database that showcases scientific experiments 
+          and research methods to enhance learning and laboratory instruction. </p>
+        <p> <b>Username: </b> csulibrary@csu.edu.ph <br> <b>Password: </b> R02cagayan! </p>
+        
+          <!-- <p>Publishes scholarly books and journals in humanities, social sciences, science, and technology 
+            (Taylor & Francis).</p> -->
+
+      </div>
+
+    </div>
+  </section>
+
+   <!-- CPLRC Section -->
+  <section id="cplrc" class="nlp-section">
+    <div class="nlp-header">
+      <div class="hero-image">
+        <a href="https://cplrc.org/m/login?" target="_blank" ><img src="cplrc.png" alt="cplrc logo"></a>
+    </div>
+
+      <h2>CAGAYAN PROVINCIAL LEARINING AND RESOURCE CENTER (CPLRC) </h2>
+      <p>CPLRC is a provincial resource center that offers educational 
+        and government information materials to support research and community learning in Cagayan</p>
+      <p> <b> Username: csulibrary@csu.edu.ph </b> | <b>Password: csuac2026 </b> </p>
+    </div>
+
+
+  </section>
+
+  <!-- NLP Section -->
+  <section id="nlp" class="nlp-section">
+    <div class="nlp-header">
+      <a href="https://eportal.nlp.gov.ph/user/login"><img src="NLP.png" alt="NLP Logo"></a>
+      <h2>National Library of the Philippines (NLP) E-Resources</h2>
+      <p>Offers a wide range of online references and academic materials for students, educators, and researchers.</p>
+      <p> <b> Username:  csuandrews </b> | <b>Password:  nlpcsuandrews! </b> </p>
+    <!--Access a collection of free online databases, journals, and archives provided by the National Library of the Philippines for academic and research use. -->
+    </div>
+
+    <div class="nlp-grid">
+      <div class="nlp-item">
+
+        <!--<a href="https://eportal.nlp.gov.ph/britannica" target="_blank"><img src="Brita.png" alt="Britanica"></a>-->
+        
+        <h4><a href="https://eportal.nlp.gov.ph/britannica" target="_blank">BRITANICA LIBRARY</a></h4>
+        <p>An online encyclopedia offering reliable articles, images, and videos for students and researchers.</p> <br>
+        <p> <b>Email Address:</b> andrewsprintservices@gmail.com <br> <b>Password: </b> nlpcsuandrews!</p>
+      </div>
+
+      <div class="nlp-item">
+        <h4><a href="https://www.degruyter.com/?token=cGmYqF_2Th0JwfiyVPJan2oZxIC1Ga1ZKudgMIKXldc" target="_blank">DE GRUYTER</a></h4>
+        <p>A scholarly publisher providing academic books and journals across sciences, 
+          humanities, and social sciences.</p> <br>
+        <p><b>Email Address:</b> andrewsprintservices@gmail.com <br> <b>Password:</b> nlpcsuandrews!</p>
+      </div>
+
+      <div class="nlp-item">
+        <h4><a href="https://www.emerald.com/insight/" target="_blank">EMERALD PUBLISHING</a></h4>
+        <p>Focuses on management, business, education, and social science research publications.</p><br>
+        <p><b>Email Address:</b> andrewsprintservices@gmail.com <br> <b>Password:</b> nlpcsuandrews!</p>
+      </div>
+
+      <div class="nlp-item">
+        <h4><a href="https://link.gale.com/apps/menu?us  
+          erGroupName=phnl&token=tOUM4Q3fmeojT8rL9cYeocc0pRTqz8SOu3PwryTIQWA" target="_blank">GALE DATABASES</a></h4>
+        <p>Provides access to academic journals, newspapers, and eBooks covering various subjects.</p>
+        <p><b>Email Address:</b> andrewsprintservices@gmail.com <br> <b> Password:</b> nlpcsuandrews!</p>
+      </div>
+
+      <div class="nlp-item">
+        <h4><a href="https://portal.igpublish.com/iglibrary/?token=koxZFQKdyFaZbSBUav3qTsaKouKqXywPe6oqL7YLMVc" target="_blank">IG PUBLISHING</a></h4>
+        <p>A digital platform offering academic and professional eBooks from leading publishers.</p>
+        <p><b>Email Address:</b> andrewsprintservices@gmail.com <br> <b> Password:</b> nlpcsuandrews!</p>
+      </div>
+
+      <div class="nlp-item">
+        <h4><a href="https://www.igi-global.com/gateway/" target="_blank">IGI GLOBAL</a></h4>
+        <p>Publishes research-based books and journals in technology, education, and social sciences.</p><br>
+        <p><b>Email Address:</b> andrewsprintservices@gmail.com <br><b> Password: </b> nlpcsuandrews!</p>
+      </div>
+
+      <div class="nlp-item">
+        <h4><a href="https://ebookcentral.proquest.com/lib/nlpph-ebooks/home.action?token=M2dJIdr8YyBg2v-O7YQ_d16stGabfpOcDkqlS8A0cCE" target="_blank">PROQUEST EBOOK CENTRAL</a></h4>
+        <p>An online library giving access to thousands of scholarly eBooks from top academic publishers.</p><br>
+        <p><b>Email Address:</b> andrewsprintservices@gmail.com <br> <b> Password:</b> nlpcsuandrews!</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="testimonials">
+    <h2 class="section-title">CAGAYAN STATE UNIVERSITY MOTTO</h2>
+    <p class="section-desc">"AD OPTIMUN EDUCANS"</p>
+
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>“An investment in knowledge pays the best interest.”</p>
+        <div class="name">— Benjamin Franklin</div>
+      </div>
+      <div class="testimonial">
+        <p>“It is the mark of an educated mind to be able to entertain a thought without accepting it.”</p>
+        <div class="name">— Aristotle</div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p>📧 Email: <a href="mailto:csulibrary@csu.edu.ph">csulibrary@csu.edu.ph</a></p>
+    <p>📞 (078) 377-3298</p>
+    <p>© 2025 Cagayan State University Library</p>
+  </footer>
+
+    <!-- Back to Top Button -->
+  <button id="backToTop" title="Go to top" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+      <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+    </svg>
+  </button>
+
+  <script>
+    const topBtn = document.getElementById("backToTop");
+
+    // Show button when scrolled down
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 200) {
+        topBtn.style.display = "flex";  
+      } else {
+        topBtn.style.display = "none";
+      }
+    });
+
+    // Smooth scroll to top
+    topBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+});
+  </script>
+
+</body>
+</html>
+
